@@ -40,7 +40,7 @@ body {
 
 /* ---------- Hero background ---------- */
 .background_image {
-    background: url(Assets/Images/background.jpg) center / cover no-repeat;
+    background: url(background.jpg) center / cover no-repeat;
     min-height: 100vh;
     min-height: 100svh;          /* better on mobile browsers */
     width: 100%;
