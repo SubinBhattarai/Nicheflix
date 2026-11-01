@@ -1,0 +1,514 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --purple: rgb(210, 1, 210);
+    --purple-hover: rgb(235, 40, 235);
+    --purple-glow: rgba(210, 1, 210, 0.5);
+    --text: #ffffff;
+    --muted: #d2d2d2;
+}
+
+html {
+    scroll-behavior: smooth;     /* footer links glide to their section */
+}
+
+body {
+    background-color: black;
+    color: var(--text);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Purple highlight when selecting text */
+::selection {
+    background-color: var(--purple);
+    color: var(--text);
+}
+
+/* Hidden visually, still read by screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* ---------- Hero background ---------- */
+.background_image {
+    background: url(Assets/Images/background.jpg) center / cover no-repeat;
+    min-height: 100vh;
+    min-height: 100svh;          /* better on mobile browsers */
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Dark overlay: darker top and bottom, fades into the black page */
+.opacitybox {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 45%),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.55) 40%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+/* ---------- Navbar ---------- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    min-height: 100px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.logoname {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text);
+}
+
+.logo {
+    width: 110px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.logoname p {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-left: -20px;
+}
+
+/* ---------- Sign in buttons (solid purple + glow) ---------- */
+.signin {
+    border: none;
+    border-radius: 6px;
+    background-color: var(--purple);
+    color: var(--text);
+    padding: 10px 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.signin:hover {
+    background-color: var(--purple-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px var(--purple-glow);
+}
+
+.signin:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.signin:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+
+/* ---------- Hero text ---------- */
+.bgimageitems {
+    position: relative;
+    z-index: 2;                  /* above the dark overlay */
+    flex: 1;                     /* fill the space under the navbar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 13px 24px 80px;
+}
+
+h1 {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    line-height: 1.15;
+}
+
+.Subtitle {
+    font-family: "Jost", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 350;
+    font-size: clamp(1rem, 2.5vw, 1.45rem);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.Subtitle2 {
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+}
+
+/* ---------- Email + button row ---------- */
+.search {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+}
+
+input {
+    flex: 1;
+    min-width: 0;                /* lets the input shrink inside flex */
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--purple);
+    border-radius: 2px;
+    padding: 14px 12px;
+    font-size: 1rem;             /* 16px stops iPhones from zooming in */
+    color: var(--text);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+input::placeholder {
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 3px var(--purple-glow);   /* purple glow ring */
+}
+
+input:focus::placeholder {
+    color: #fff;
+}
+
+.signin2 {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;            /* Archivo Black only has 400 */
+    font-size: 1rem;
+    border-radius: 2px;
+    padding: 14px 24px;
+    white-space: nowrap;
+}
+
+/* ---------- Divider line (fades in and out, purple in the middle) ---------- */
+.Breaker {
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, var(--purple), transparent);
+}
+
+/* ---------- Section headings ---------- */
+.trending_part h2,
+.Secondsection h2 {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    margin-bottom: 24px;
+}
+
+.trending_part h2 {
+    border-left: 5px solid var(--purple);
+    padding-left: 14px;
+}
+
+.Secondsection h2 {
+    text-align: center;
+}
+
+/* small purple bar under "About Us" */
+.Secondsection h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    margin: 12px auto 0;
+    border-radius: 2px;
+    background-color: var(--purple);
+}
+
+/* ---------- Trending section ---------- */
+.trending_part {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0 70px;
+}
+
+.trending {
+    display: grid;
+    gap: 32px 40px;              /* row gap, column gap */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+/* Each film = poster on top, button below, stacked in a column */
+.film {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.film img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;         /* poster shape at any width */
+    object-fit: cover;           /* crops instead of stretching */
+    border-radius: 5px;
+    background-color: rgba(93, 93, 93, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.film:hover img {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px var(--purple-glow);
+}
+
+/* ---------- Watch Now button (purple fills in from the left) ---------- */
+.watchnowbtn {
+    width: 100%;
+    padding: 10px 20px;
+    border: 2px solid var(--purple);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+
+    /* A purple layer that is 0% wide until you hover */
+    background: linear-gradient(var(--purple), var(--purple)) no-repeat left center / 0% 100%;
+    transition: background-size 0.35s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.watchnowbtn:hover {
+    background-size: 100% 100%;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px var(--purple-glow);
+}
+
+.watchnowbtn:active {
+    transform: translateY(0);
+}
+
+.watchnowbtn:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+
+/* ---------- About Us / FAQ ---------- */
+.Secondsection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;                   /* space between the questions */
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 0 70px;
+}
+
+.question {
+    background-color: rgba(93, 93, 93, 0.35);
+    border: 1px solid rgba(210, 1, 210, 0.35);
+    border-left: 4px solid var(--purple);
+    border-radius: 6px;
+    font-family: "Fjalla One", sans-serif;
+    font-weight: 400;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.question:hover {
+    background-color: rgba(93, 93, 93, 0.5);
+    box-shadow: 0 0 16px rgba(210, 1, 210, 0.35);
+}
+
+.question summary {
+    display: flex;
+    justify-content: space-between;   /* question left, + right */
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    list-style: none;                 /* removes the default arrow */
+}
+
+.question summary::-webkit-details-marker {
+    display: none;                    /* same, for Safari */
+}
+
+.question summary::after {
+    content: "+";
+    font-size: 1.8rem;
+    line-height: 1;
+    color: var(--purple);
+    transition: transform 0.3s ease;
+}
+
+/* when open, the + spins into an x */
+.question[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.question summary:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: -2px;
+}
+
+.question p {
+    padding: 0 20px 18px;
+    font-family: "Jost", sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--muted);
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Footer (CSS grid) ---------- */
+.footer {
+    border-top: 2px solid var(--purple);
+    padding: 50px 0 24px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;    /* brand is wider */
+    gap: 32px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+}
+
+.footer-brand h3 {
+    color: var(--purple);
+    font-size: 1.5rem;
+}
+
+.footer p {
+    font-family: "Jost", sans-serif;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links h3 {
+    margin-bottom: 4px;
+}
+
+.footer-links a {
+    width: fit-content;
+    color: var(--muted);
+    font-family: "Jost", sans-serif;
+    text-decoration: none;
+    background: linear-gradient(var(--purple), var(--purple)) no-repeat left bottom / 0% 2px;
+    transition: color 0.3s ease, background-size 0.3s ease;
+}
+
+/* purple underline grows under the link on hover */
+.footer-links a:hover {
+    color: var(--text);
+    background-size: 100% 2px;
+}
+
+.footer-links a:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+
+.creator-name {
+    font-family: "Archivo Black", sans-serif !important;
+    font-size: 1.3rem;
+    color: var(--purple) !important;
+    margin-bottom: 6px;
+}
+
+.footer-bottom {
+    width: 90%;
+    max-width: 1200px;
+    margin: 36px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 700px) {
+    .footer-grid {
+        grid-template-columns: 1fr;       /* stack the footer columns */
+    }
+
+    .footer-bottom {
+        text-align: left;
+    }
+}
+
+@media (max-width: 600px) {
+    .search {
+        flex-direction: column;
+    }
+
+    .trending {
+        grid-template-columns: repeat(2, 1fr);   /* two posters per row on phones */
+        gap: 24px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 80px;
+        height: 45px;
+    }
+
+    .logoname p {
+        font-size: 20px;
+        margin-left: -14px;
+    }
+}
+
+/* Respect people who turn animations off in their device settings */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
+}
